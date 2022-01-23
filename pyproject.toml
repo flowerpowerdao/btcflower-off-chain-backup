@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "state_backup"
+version = "0.1.0"
+description = ""
+authors = ["Moritz <fullermoritz@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+ic-py = "^0.0.8"
+schedule = "^1.1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+autopep8 = "^1.6.0"
+
+[tool.poetry.scripts]
+backup = 'state_backup.backup:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
