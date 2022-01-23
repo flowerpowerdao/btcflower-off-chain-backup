@@ -1,3 +1,4 @@
+from turtle import back
 from ic.client import Client
 from ic.identity import Identity
 from ic.agent import Agent
@@ -16,6 +17,7 @@ agent = Agent(iden, client)
 
 
 def main():
+    backup()
     schedule.every().hour.do(backup)
 
     while True:
