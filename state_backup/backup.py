@@ -3,7 +3,7 @@ from ic.identity import Identity
 from ic.agent import Agent
 from ic.candid import encode, Types
 import time
-import schedule
+import sched
 import sys
 
 # params is an array, return value is encoded bytes
@@ -16,14 +16,7 @@ client = Client()  # creates a client to talk to the IC
 # creates an agent, combination of client and identity
 agent = Agent(iden, client)
 
-
-def main():
-    backup(canister_id=sys.argv[1])
-    schedule.every(5).seconds.do(backup, canister_id=sys.argv[1])
-
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+s = sched.scheduler(time.time, time.sleep)
 
 
 def backup(canister_id):
@@ -32,5 +25,11 @@ def backup(canister_id):
     # doesnt change after calling `shuffleAssets`
     result = agent.update_raw(
         canister_id, "disburse", encode([]))
-        
-    print(result) 
+
+    print(result)
+    s.enter(10, 1, backup, (canister_id,))
+
+
+def main():
+    s.enter(10, 1, backup, (sys.argv[1],))
+    s.run()
