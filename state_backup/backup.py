@@ -20,7 +20,7 @@ agent = Agent(iden, client)
 
 def main():
     backup(canister_id=sys.argv[1])
-    schedule.every().minute.do(backup, canister_id=sys.argv[1])
+    schedule.every(interval=int(sys.argv[2])).minutes.do(backup, canister_id=sys.argv[1])
 
     while True:
         schedule.run_pending()
