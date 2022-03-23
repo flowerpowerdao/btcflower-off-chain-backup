@@ -23,17 +23,16 @@ def backup(canister_id, interval):
     print(f"disburse completed at {time.ctime()}")
     # query the NFT canister
     # doesnt change after calling `shuffleAssets`
-    result = agent.update_raw(
-        canister_id, "disburse", encode([]))
-
     try:
+        result = agent.update_raw(
+            canister_id, "disburse", encode([]))
         print(result)
-        s.enter(int(interval), 1, backup, (canister_id,interval))
-    except Exception:
+    except TypeError:
         pass
-    
+
+    s.enter(int(interval), 1, backup, (canister_id, interval))
 
 
 def main():
-    s.enter(1, 1, backup, (sys.argv[1],sys.argv[2]))
+    s.enter(1, 1, backup, (sys.argv[1], sys.argv[2]))
     s.run()
