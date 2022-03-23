@@ -6,7 +6,7 @@ authors = ["Moritz <fullermoritz@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-ic-py = "^0.0.8"
+ic-py = "^0.1.0"
 schedule = "^1.1.0"
 
 [tool.poetry.dev-dependencies]
