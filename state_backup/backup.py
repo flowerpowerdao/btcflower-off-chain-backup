@@ -27,7 +27,7 @@ def backup(canister_id, interval):
         result = agent.update_raw(
             canister_id, "disburse", encode([]))
         print(result)
-    except TypeError:
+    except:
         pass
 
     s.enter(int(interval), 1, backup, (canister_id, interval))
