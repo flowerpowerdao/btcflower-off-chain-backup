@@ -19,17 +19,21 @@ agent = Agent(iden, client)
 s = sched.scheduler(time.time, time.sleep)
 
 
-def backup(canister_id):
+def backup(canister_id, interval):
     print(f"disburse completed at {time.ctime()}")
     # query the NFT canister
     # doesnt change after calling `shuffleAssets`
     result = agent.update_raw(
         canister_id, "disburse", encode([]))
 
-    print(result)
-    s.enter(10, 1, backup, (canister_id,))
+    try:
+        print(result)
+        s.enter(int(interval), 1, backup, (canister_id,interval))
+    except Exception:
+        pass
+    
 
 
 def main():
-    s.enter(10, 1, backup, (sys.argv[1],))
+    s.enter(1, 1, backup, (sys.argv[1],sys.argv[2]))
     s.run()
