@@ -34,11 +34,14 @@ def backup(canister_id):
     my_canister = Canister(agent=agent, canister_id=canister_id, candid=canister_did)
     # query the NFT canister
     # doesnt change after calling `shuffleAssets`
-    tokens = my_canister.getTokens()  # type: ignore
-    with open('tokens.json', 'w') as f:
-        json.dump(tokens, f, ensure_ascii=False, indent=4)
+    try:
+        tokens = my_canister.getTokens()  # type: ignore
+        with open('tokens.json', 'w') as f:
+            json.dump(tokens, f, ensure_ascii=False, indent=4)
 
-    # changes after every transaction
-    registry = my_canister.getRegistry()  # type: ignore
-    with open('registry.json', 'w') as f:
-        json.dump(registry, f, ensure_ascii=False, indent=4)
+        # changes after every transaction
+        registry = my_canister.getRegistry()  # type: ignore
+        with open('registry.json', 'w') as f:
+            json.dump(registry, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(e)
