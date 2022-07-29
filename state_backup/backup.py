@@ -34,7 +34,7 @@ def backup(canister_id):
     my_canister = Canister(agent=agent, canister_id=canister_id, candid=canister_did)
     # query the NFT canister
     # doesnt change after calling `shuffleAssets`
-    tokens = my_canister.getTokenToAssetMapping()  # type: ignore
+    tokens = my_canister.getTokens()  # type: ignore
     with open('tokens.json', 'w') as f:
         json.dump(tokens, f, ensure_ascii=False, indent=4)
 
