@@ -34,6 +34,7 @@ def cron(canister_id, interval):
         result = agent.update_raw(canister_id, 'cronDisbursements', encode([]))
         result = agent.update_raw(canister_id, 'cronSalesSettlements', encode([]))
         result = agent.update_raw(canister_id, 'cronSettlements', encode([]))
+        result = agent.update_raw(canister_id, 'cronFailedSales', encode([]))
         print(result)
     except Exception as e:
         print(e)
