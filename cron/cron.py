@@ -30,7 +30,6 @@ def cron(canister_id, interval):
         # print(my_canister.cronDisbursements())  # type: ignore
         # print(my_canister.cronSettlements())  # type: ignore
 
-        canister_id = 'skjpp-haaaa-aaaae-qac7q-cai'
         result = agent.update_raw(canister_id, 'cronDisbursements', encode([]))
         result = agent.update_raw(canister_id, 'cronSalesSettlements', encode([]))
         result = agent.update_raw(canister_id, 'cronSettlements', encode([]))
