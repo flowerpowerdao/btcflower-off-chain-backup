@@ -26,8 +26,9 @@ def cron(canister_id, interval):
             agent=agent, canister_id=canister_id, candid=canister_did)
         # query the NFT canister
         # doesnt change after calling `shuffleAssets`
-        my_canister.cronSalesSettlements()  # type: ignore
         my_canister.cronDisbursements()  # type: ignore
+        my_canister.cronFailedSales()  # type: ignore
+        my_canister.cronSalesSettlements()  # type: ignore
         my_canister.cronSettlements()  # type: ignore
     except Exception as e:
         print(e)
